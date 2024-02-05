@@ -30,7 +30,7 @@ public class ArgumentParser<T>
         var parsedIndex = new List<int>();
         foreach (var field in fields)
         {
-            var attr = field.GetCustomAttribute<BaseArgumentAttribute>() as BaseArgumentAttribute;
+            var attr = field.GetCustomAttribute<BaseArgumentAttribute>();
             if (attr == null) continue;
             try
             {
@@ -45,12 +45,12 @@ public class ArgumentParser<T>
         }
 
         var argIndexes = Enumerable.Range(0, args.Length).ToList();
-        var unParsedIndex = argIndexes.FirstOrDefault(r => !parsedIndex.Contains(r));
+        var unParsedIndex = argIndexes.Where(r => !parsedIndex.Contains(r));
 
-        if (unParsedIndex != null)
+        if (unParsedIndex != null && unParsedIndex.Any())
         {
             return new ArgumentParsingResult<T>(false, default,
-                $"Unknown argument {args[unParsedIndex]} at position {unParsedIndex}");
+                $"Unknown argument {args[unParsedIndex.First()]} at position {unParsedIndex.First()}");
         }
 
         return new ArgumentParsingResult<T>(true, target, string.Empty);
