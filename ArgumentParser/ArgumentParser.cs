@@ -53,7 +53,7 @@ public class ArgumentParser<T>
                 $"Unknown argument {args[unParsedIndex.First()]} at position {unParsedIndex.First()}");
         }
 
-        return new ArgumentParsingResult<T>(true, target, string.Empty);
+        return new ArgumentParsingResult<T>(true, target, null);
     }
     
     /// <summary>

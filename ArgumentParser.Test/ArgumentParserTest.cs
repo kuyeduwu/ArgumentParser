@@ -46,7 +46,26 @@ public class ArgumentParserTest
             get => _para1;
             set => _para1 = value;
         }
-        
+
+        public override bool Equals(object? otherOne)
+        {
+            return otherOne switch
+            {
+                null => false,
+                ParsableOption one => this.Equals(one),
+                _ => false
+            };
+        }
+
+        private bool Equals(ParsableOption other)
+        {
+            return _para1 == other._para1;
+        }
+
+        public override int GetHashCode()
+        {
+            return _para1.GetHashCode();
+        }
     }
     [Test]
     public void ParsableTest()
