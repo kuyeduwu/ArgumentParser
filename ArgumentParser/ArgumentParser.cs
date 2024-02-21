@@ -94,7 +94,7 @@ public class ArgumentParser<T>
     /// Detect whether each of the defined short/long name is identical.
     /// </summary>
     /// <returns></returns>
-    private bool IsNamesIdentical()
+    private static bool IsNamesIdentical()
     {
         var fields = GetArgumentedFields();
         var definedArguments = fields.Select(r => r.GetCustomAttribute<BaseArgumentAttribute>());
@@ -109,7 +109,7 @@ public class ArgumentParser<T>
         return names.Count == names.Distinct().Count();
     }
     
-    private FieldInfo[] GetArgumentedFields()
+    private static FieldInfo[] GetArgumentedFields()
     {
         var fields = typeof(T).GetFields(BindingFlags.NonPublic | BindingFlags.Instance);
         return fields.Where(f => f.GetCustomAttributes<BaseArgumentAttribute>().Any()).ToArray();
