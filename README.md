@@ -1,4 +1,6 @@
-# Argument Parser
+# Argument Parser 
+
+![NuGet Version](https://img.shields.io/nuget/v/kuyeduwu.ArgumentParser)
 
 A .Net class library to make the command line argument definning and parsing easy.
 
@@ -34,6 +36,6 @@ internal static class Main(string[] args) {
         return;
     }
 
-    //you logic here
+    //your logic here
 }
 ```
